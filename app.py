@@ -1,13 +1,13 @@
 from flask import Flask, request, send_file, render_template
 import os
-import cv_tailor as tail
+import cv_tailor as CVT
 
 app = Flask(__name__)
 
 # Function to tailor resume (placeholder for your code)
 def tailor_resume(resume_path, job_description):
     tailored_resume_path = "tailored_resume/tailored_resume.tex"  # path to save the tailored resume
-    tail.tailor_resume(resume_path, job_description,output_path=tailored_resume_path)
+    CVT.tailor_resume(resume_path, job_description, output_path=tailored_resume_path)
     return "tailored_resume.pdf"
 
 @app.route('/')
