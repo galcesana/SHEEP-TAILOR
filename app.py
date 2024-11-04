@@ -18,11 +18,9 @@ def index():
 def process_resume():
     resume_file = request.files['resume']
     job_description = request.form['job_description']
-
     # Save the uploaded resume file
     resume_path = os.path.join('uploads', resume_file.filename)
     resume_file.save(resume_path)
-
     try:
         # Generate tailored resume
         tailored_resume_path = tailor_resume(resume_path, job_description)
