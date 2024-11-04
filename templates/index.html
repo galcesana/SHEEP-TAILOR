@@ -1,0 +1,396 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Tailor</title>
+    <link href="https://fonts.googleapis.com/css2?family=Assistant:wght@400;600&family=Quicksand:wght@400;500;700&family=Dancing+Script&display=swap" rel="stylesheet">
+
+    <style>
+        /* Apply background image to the body */
+        body {
+            background-image: url('/static/images/background.jpg');
+            background-size: cover;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-attachment: fixed;
+            color: #333;
+            font-family: 'Roboto', sans-serif;
+        }
+
+        /* Container styling */
+        .container {
+            width: 100%;
+            max-width: 600px;
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8); /* Adjust the alpha value for transparency */
+            /* background: linear-gradient(145deg, #ffffff, #f0f0f0); */
+            border-radius: 16px;
+            box-shadow: 0 12px 35px rgba(0, 0, 0, 0.15);
+            text-align: center;
+            margin: 3rem auto;
+            transition: transform 0.3s ease;
+        }
+
+        .container:hover {
+            transform: scale(1.03);
+        }
+
+        h1 {
+            font-size: 2.5rem;
+            font-family: 'Assistant';
+            font-weight: 700;
+            color: #202073;
+            margin-bottom: 1rem;
+        }
+
+        .subheading {
+            font-size: 1rem;
+            font-family: 'Quicksand', sans-serif;
+            /* font-family: 'Dancing Script', cursive; Added Dancing Script font */
+            color: #666;
+            margin-bottom: 2rem;
+        }
+
+        /* Form group styling */
+        .form-group {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            padding: 0.8rem;
+            background-color: #f7f7f7;
+            transition: border-color 0.2s ease;
+        }
+
+        .form-group:hover,
+        .form-group:focus-within {
+            border-color: #4c6ef5;
+        }
+
+        .icon {
+            font-size: 1.5rem;
+            color: #4c6ef5;
+            margin-right: 0.8rem;
+        }
+
+        input[type="file"],
+        textarea {
+            width: 100%;
+            border: none;
+            font-size: 1rem;
+            outline: none;
+            background: none;
+            font-family: 'Assistant';
+            /* font-family: 'Roboto', sans-serif; */
+        }
+
+        textarea {
+            padding: 0.5rem;
+            resize: vertical;
+            border: 2px solid #ddd;
+            border-radius: 12px;
+            background-color: #f7f7f7;
+            margin-bottom: 1rem;
+            font-family: 'Assistant';
+
+        }
+
+        textarea:focus {
+            border-color: #4c6ef5;
+        }
+
+        /* Button styling */
+        button {
+            width: 100%;
+            padding: 0.9rem;
+            margin-top: 1rem;
+            font-size: 1.2rem;
+            font-family: 'Assistant';
+            font-weight: 600;
+            color: #fff;
+            background-color: #4c6ef5;
+            border: none;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, transform 0.2s ease;
+            box-shadow: 0 6px 20px rgba(76, 110, 245, 0.4);
+        }
+
+        button:hover {
+            background-color: #3b5bdb;
+            transform: translateY(-2px);
+        }
+
+        /* Loading spinner */
+        #loading-spinner {
+            display: none;
+            font-size: 1rem;
+            color: #4c6ef5;
+            font-weight: 500;
+            margin-top: 1rem;
+        }
+
+        /* "Generate New Resume" button */
+        #new-resume-button {
+            display: none;
+            padding: 0.9rem 2rem;
+            font-size: 1rem;
+            font-weight: 600;
+            color: #4c6ef5;
+            font-family: 'Assistant';
+            background-color: #fff;
+            border: 2px solid #4c6ef5;
+            border-radius: 12px;
+            cursor: pointer;
+            transition: background-color 0.3s ease, color 0.3s ease;
+        }
+
+        #new-resume-button:hover {
+            background-color: #4c6ef5;
+            color: #fff;
+        }
+
+        /* Position the "By Gal Cesana" link in the top-left corner */
+        .author-link {
+            position: absolute;
+            top: 65px;
+            left: 20px;
+            font-size: 1.5rem; /* Adjusted for better visibility */
+            font-family: 'Dancing Script', cursive; /* Added Dancing Script font */
+            font-weight: 500; /* Adjust the weight if necessary */
+            /* color: #4c6ef5; */
+            color: #051d7e;
+            text-decoration: none;
+            transition: color 0.3s ease;
+        }
+
+        .author-link:hover {
+            color: #3b5bdb;
+            /* font-size: 2.2rem; Adjusted for better visibility */
+        }
+
+        /* Hover effect for the sheep logo */
+        .sheep-logo-link {
+            position: absolute; 
+            top: 0; 
+            left: 10px; 
+            font-size: 3.5rem; 
+            font-family: 'Assistant', cursive; 
+            color: #051d7e;
+            text-decoration: none; /* Remove underline */
+            transition: color 0.3s ease;
+
+        }
+
+        .sheep-logo-link:hover {
+            color: #3a78eb; /* Change to your preferred hover color */
+        }
+        
+
+        /* About Me Section */
+        .about-section {
+            font-family: 'Quicksand', sans-serif;
+            display: flex;
+            justify-content: space-between;
+            gap: 2rem;
+            max-width: 800px;
+            width: 100%; /* Ensure it respects max-width */
+            padding: 2rem;
+            background: rgba(255, 255, 255, 0.8); /* Adjust the alpha value for transparency */
+            /* background: rgba(255, 255, 255, 0.95); */
+            border-radius: 16px;
+            box-shadow: 0 8px 30px rgba(0, 0, 0, 0.1);
+            margin: 3rem auto;
+            text-align: left;
+        }
+
+        .about-section div {
+            flex: 1;
+        }
+
+        .about-section h2 {
+            color: #4c6ef5;
+            margin-bottom: 1rem;
+        }
+
+        .about-section p {
+            font-size: 1rem;
+            line-height: 1.6;
+            color: #555;
+            margin-bottom: 1rem;
+        }
+
+        .about-section .hebrew {
+            direction: rtl;
+            text-align: right; /* Ensures right alignment */
+        }
+        
+    </style>
+</head>
+<body>
+    <!-- Company logo section -->
+    <!-- <a href="https://en.wikipedia.org/wiki/Sheep" target="_blank" class="sheep-logo-link">
+        SHEEP 🐑 </a> -->
+
+    <!-- Company logo section -->
+    <a href="https://yi.wikipedia.org/wiki/%D7%A9%D7%90%D7%A3" target="_blank" class="sheep-logo-link">
+        SHEEP <img src="/static/images/sheep.png" alt="Sheep Logo" style="width: 79px; vertical-align: top; margin-left: -10px; margin-top: 6px">
+    </a>
+
+    <a href="https://www.linkedin.com/in/gal-cesana-844509217/" target="_blank" class="author-link">By Gal Cesana</a>
+
+    <div class="container">
+        <h1>Tailor Your Resume</h1>
+        <p class="subheading">Crafted specifically for your dream role</p>
+
+
+        <form id="resume-form" enctype="multipart/form-data">
+            <label for="resume-form" style="text-align:left; display:block; margin-bottom:0.5rem; color:#555;"> Drop Your Resume File - Word or PDF</label>
+            <div class="form-group">
+                <span class="icon">📄</span>
+                <input type="file" id="resume" name="resume" accept=".pdf,.docx,.txt" required>
+            </div>
+
+            <label for="job-description" style="text-align:left; display:block; margin-bottom:0.5rem; color:#555;">Job Description</label>
+            <textarea id="job-description" name="job_description" rows="6" placeholder="Enter the job description..." required></textarea>
+
+            <button type="button" onclick="submitForm()">Generate Tailored Resume</button>
+        </form>
+
+        <!-- Error button -->
+        <div id="error-button-container" style="text-align: center; margin-top: 1rem;"></div>
+
+
+        <!-- Loading spinner -->
+        <div id="loading-spinner">Generating your tailored resume...</div>
+
+        
+        <div id="download-button-container" style="text-align: center; margin-top: 1rem;"></div>
+
+        <!-- "Generate New Resume" button -->
+        <button id="new-resume-button" onclick="reloadPage()">Generate New Resume</button>
+    </div>
+
+    <!-- About Us Section -->
+    <div class="about-section">
+        <div>    <div>
+            <h2>About Me</h2>
+            <p>I'm Gal Cesana, a B.Sc. Computer Science student at The Hebrew University of Jerusalem, graduating in 2026. With experience as an HR officer managing 500+ personnel in the IDF and a technical background from my time at SAIPS, I blend talent development and software expertise.</p>
+            <p>Proficient in Python, Java, C, C++, HTML, and machine learning tools, I created <strong>The Resume Tailor</strong> to help job seekers tailor their resumes using AI for better job alignment.<br> Connect with me on LinkedIn to see how <strong>The Resume Tailor</strong> can elevate your job search.</p>
+        </div> </div>
+
+        
+        <!-- <div class="hebrew"><div>
+            <h2>אודותיי</h2>
+            <p>שמי גל סזנה, סטודנט למדעי המחשב באוניברסיטה העברית בירושלים, עם סיום לימודים צפוי בשנת 2026. עם ניסיון כקצין משאבי אנוש בניהול יחידה של מעל 500 חיילים בצה"ל ורקע טכני מעבודתי ב-SAIPS, אני משלב כישורי מנהיגות ומומחיות בתוכנה.</p>
+            <p>מיומן ב-Python, C++ וכלי למידת מכונה, יצרתי את <strong>The Resume Tailor</strong> כדי לעזור למחפשי עבודה להתאים את קורות החיים שלהם באמצעות AI להתאמה טובה יותר למשרות. התחברו אליי בלינקדאין כדי לראות איך <strong>The Resume Tailor</strong> יכול לשדרג את חיפוש העבודה שלכם.</p>
+       </div> -->
+
+    <!-- </div> -->
+    <script>
+        async function submitForm() {
+            const form = document.getElementById('resume-form');
+            const formData = new FormData(form);
+            const loadingSpinner = document.getElementById('loading-spinner');
+            const newResumeButton = document.getElementById('new-resume-button');
+            const downloadContainer = document.getElementById('download-button-container');
+            const errorButtonContainer = document.getElementById('error-button-container');
+    
+            // Clear any existing download button and error messages
+            downloadContainer.innerHTML = '';
+            errorButtonContainer.innerHTML = '';
+    
+            // Show loading spinner and hide the form
+            loadingSpinner.style.display = 'block';
+            form.style.display = 'none';
+    
+            try {
+                const response = await fetch('/process_resume', {
+                    method: 'POST',
+                    body: formData
+                });
+    
+                if (response.ok) {
+                    const blob = await response.blob();
+                    const url = window.URL.createObjectURL(blob);
+    
+                    // Create the download button
+                    const downloadButton = document.createElement('button');
+                    downloadButton.textContent = 'Download Tailored Resume';
+                    downloadButton.style.padding = '0.9rem 2rem';
+                    downloadButton.style.fontSize = '1rem';
+                    downloadButton.style.fontWeight = '600';
+                    downloadButton.style.color = '#4c6ef5';
+                    downloadButton.style.backgroundColor = '#fff';
+                    downloadButton.style.border = '2px solid #4c6ef5';
+                    downloadButton.style.borderRadius = '12px';
+                    downloadButton.style.cursor = 'pointer';
+                    downloadButton.onclick = () => {
+                        const link = document.createElement('a');
+                        link.href = url;
+                        link.download = 'tailored_resume.pdf';
+                        link.click();
+                        window.URL.revokeObjectURL(url); // Free memory
+                    };
+    
+                    // Append the download button to the container
+                    downloadContainer.appendChild(downloadButton);
+    
+                    // Show the "Generate New Resume" button
+                    newResumeButton.style.display = 'block';
+                } else {
+                    // Create the "Try Again" button with a simple error message
+                    const tryAgainButton = document.createElement('button');
+                    tryAgainButton.textContent = 'An error occurred – Click to try again';
+                    tryAgainButton.style.padding = '0.9rem 2rem';
+                    tryAgainButton.style.fontSize = '1rem';
+                    tryAgainButton.style.fontWeight = '600';
+                    tryAgainButton.style.color = '#fff';
+                    tryAgainButton.style.backgroundColor = '#007bff'; // Blue background color
+                    tryAgainButton.style.border = 'none';
+                    tryAgainButton.style.borderRadius = '12px';
+                    tryAgainButton.style.cursor = 'pointer';
+                    tryAgainButton.style.fontFamily = 'Assistant, sans-serif'; // Set the font
+
+                    tryAgainButton.onclick = () => {
+                        window.location.reload();
+                    };
+    
+                    // Append the "Try Again" button to the container
+                    errorButtonContainer.appendChild(tryAgainButton);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+    
+                // Create a generic "Try Again" button
+                const tryAgainButton = document.createElement('button');
+                tryAgainButton.textContent = 'An error occurred – Click to try again';
+                tryAgainButton.style.padding = '0.9rem 2rem';
+                tryAgainButton.style.fontSize = '1rem';
+                tryAgainButton.style.fontWeight = '600';
+                tryAgainButton.style.color = '#fff';
+                tryAgainButton.style.backgroundColor = '#f44336'; // Red background for error
+                tryAgainButton.style.border = 'none';
+                tryAgainButton.style.borderRadius = '12px';
+                tryAgainButton.style.cursor = 'pointer';
+                tryAgainButton.onclick = () => {
+                    window.location.reload();
+                };
+    
+                // Append the "Try Again" button to the container
+                errorButtonContainer.appendChild(tryAgainButton);
+            } finally {
+                // Hide loading spinner if there's an error or after processing
+                loadingSpinner.style.display = 'none';
+            }
+        }
+    
+        function reloadPage() {
+            window.location.reload();
+        }
+    </script>
+    
+</body>
+</html>
