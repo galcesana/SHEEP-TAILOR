@@ -17,12 +17,11 @@ import fitz  # handle pdf
 import docx  # handle docx
 import os  # used to get the file extension
 import subprocess
-import secrets
+import secrets# activating GEMINI #
 
-# activating GEMINI #
 
 # key = 'AIzaSyBB093d-_sTNO-eaIRvBlzK8RTSOae6-mk'  # the gemini api key
-genai.configure(api_key=secrets.key) # configure the Google Generative AI library.
+genai.configure(api_key=secrets.get_gemini_key()) # configure the Google Generative AI library.
 
 """*drive access*"""
 
