@@ -10,11 +10,13 @@ from dotenv import load_dotenv
 # loading the api key from my eniourment
 load_dotenv()
 api_key = os.getenv('API_KEY')
+API_KEY = 'AIzaSyBB093d-_sTNO-eaIRvBlzK8RTSOae6-mk'
 
 # configure the Google Generative AI library.
-genai.configure(api_key=api_key)
+genai.configure(api_key=API_KEY)
 
-"""*functions*
+"""
+*functions*
 
 *tailoring the resume using gemini*
 """
@@ -54,12 +56,12 @@ def tailor_resume_with_gemini(resume_text, job_description):
     Based on the job description, please modify the resume to best suit the role by enhancing relevant skills, experiences, and phrasing.
 
     In your response, provide only the modified resume content in LaTeX code format, ready to be compiled as a PDF CV,
-    with no additional comments or explanatory text. The output should appear as if it is the final version intended directly for submission.
-    try to make it fit 1 page.
-    write it in a way xelatex can compile it and only use Roboto font.
-    write your response only in English.
+    With no additional comments or explanatory text. The output should appear as if it is the final version intended directly for submission.
+    Try to make it fit 1 page.
+    Write it in a way xelatex can compile it and only use Roboto font.
+    Write your response only in English.
     Important - make sure xelatex can compile it! if your text contains other languages than English only 
-    print the number 69 and nothing else."""
+    Print the number 69 and nothing else."""
     # setting the gemini model
     model = genai.GenerativeModel('gemini-1.5-flash')
     # sending the prompt to gemini
