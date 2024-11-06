@@ -12,81 +12,6 @@ load_dotenv()
 api_key = os.getenv('API_KEY')
 API_KEY = 'AIzaSyBB093d-_sTNO-eaIRvBlzK8RTSOae6-mk'
 
-
-
-resume_template = r""" \documentclass[a4paper,10pt]{article}
-\usepackage{enumitem}
-\usepackage{titlesec}
-\usepackage{titling}
-\usepackage{parskip}
-\usepackage[margin=0.75in]{geometry}
-
-\titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
-\renewcommand{\maketitle}{
-    \hspace{-1em}\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-        \textbf{\LARGE Your Name} & \textbf{Phone:} (123) 456-7890 \\
-        \textbf{Email:} youremail@example.com & \textbf{GitHub:} github.com/yourusername \\
-        \textbf{LinkedIn:} linkedin.com/in/yourusername & \textbf{Location:} City, Country \\
-    \end{tabular*}
-    \vspace{1em}
-}
-
-\begin{document}
-
-\maketitle
-
-% Summary Section
-\section*{Summary}
-Results-oriented software engineer with a strong foundation in algorithms, data structures, and software development. Proven experience in developing scalable, efficient, and user-centric software solutions. Proficient in Python, C++, and Java, with practical experience in machine learning, cloud services, and collaborative projects.
-
-% Skills Section
-\section*{Technical Skills}
-\begin{itemize}[noitemsep,nolistsep]
-    \item \textbf{Languages:} Python, C++, Java, SQL
-    \item \textbf{Frameworks:} TensorFlow, PyTorch, React, Node.js
-    \item \textbf{Tools:} Git, Docker, Kubernetes, AWS, GCP, Linux
-    \item \textbf{Libraries:} Pandas, NumPy, Scikit-learn
-\end{itemize}
-
-% Experience Section
-\section*{Professional Experience}
-\textbf{Software Engineer Intern} \hfill Google, Mountain View, CA \\
-\textit{June 2023 -- August 2023}
-\begin{itemize}[noitemsep,nolistsep]
-    \item Developed and optimized features for an internal tool, reducing processing time by 25\%.
-    \item Collaborated with a cross-functional team to design a microservices architecture for scalable backend systems.
-    \item Implemented CI/CD pipelines, increasing deployment frequency by 30\%.
-\end{itemize}
-
-\textbf{Data Annotator} \hfill SAIPS (Ford Motor Company), Tel Aviv, Israel \\
-\textit{Dec 2021 -- Oct 2022}
-\begin{itemize}[noitemsep,nolistsep]
-    \item Built Python scripts for data annotation processes, improving data pipeline efficiency.
-    \item Worked closely with the development team to ensure annotated data quality for autonomous vehicle systems.
-\end{itemize}
-
-% Education Section
-\section*{Education}
-\textbf{B.Sc. in Computer Science} \hfill The Hebrew University of Jerusalem \\
-\textit{Expected Graduation: 2026} \\
-GPA: 81
-
-% Projects Section
-\section*{Projects}
-\textbf{Machine Learning Pipeline for Predictive Analytics} \\
-Developed a machine learning pipeline to analyze and predict trends from time-series data, achieving 92\% accuracy.
-\begin{itemize}[noitemsep,nolistsep]
-    \item Used Python libraries (Pandas, Scikit-learn) for data preprocessing, feature engineering, and model training.
-    \item Deployed model on AWS, enabling real-time data analytics and reporting.
-\end{itemize}
-
-% Additional Section
-\section*{Leadership \& Activities}
-\textbf{Captain, HR Officer} \hfill Israel Defense Forces (IDF) \\
-Led a team of 12 soldiers in an HR department, managing HR responsibilities for a unit of 500 personnel. Developed teamwork, leadership, and planning skills in high-pressure environments.
-
-\end{document}
-"""
 # configure the Google Generative AI library.
 genai.configure(api_key=API_KEY)
 
@@ -95,6 +20,19 @@ genai.configure(api_key=API_KEY)
 
 *tailoring the resume using gemini*
 """
+# Read resume template file
+def read_resume_template(file_path:str)->str:
+    with open(file_path, 'r', encoding='utf-8') as file:
+        content = file.read()
+    return content
+    try:
+        with open(file_path, 'r', encoding='utf-8') as file:
+            content = file.read()
+        return content
+    except FileNotFoundError:
+        print("Error: File not found.")
+    except IOError:
+        print("Error: An error occurred while reading the file.")
 
 # Function to load resume from a Word file
 def load_docx_resume(file_path:str)->str:
@@ -199,6 +137,10 @@ def tailor_resume(file_path:str, job_description:str, output_path="Tailored_Resu
     print("\n####### Resume successfully loaded #######\n")
     print(resume_text)
     print("\n####### Resume successfully loaded #######\n")
+
+    # loading the resume template
+    resume_template = read_resume_template(
+        "C:/Users/galce/OneDrive/שולחן העבודה/FOLDERS/projects/cv matcher/SHEEP-TAILOR/resume templates/1.txt")
 
     # resume_text = load_docx_resume(file_path)
     tailored_resume = tailor_resume_with_gemini(resume_text, job_description, resume_template)
