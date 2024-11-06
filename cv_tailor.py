@@ -6,11 +6,11 @@ import docx  # library to handle DOCX files
 import os  # used to access file extensions and environment variables
 import subprocess  # used to compile LaTeX files with the `xelatex` command
 from dotenv import load_dotenv  # library to load environment variables from a .env file
+from config import API_KEY
 
 # Load API key from the environment
 load_dotenv()
 api_key = os.getenv('API_KEY')
-API_KEY = 'AIzaSyBB093d-_sTNO-eaIRvBlzK8RTSOae6-mk'  # Define a specific API key as a fallback or direct setting
 
 # Configure the Google Generative AI library
 genai.configure(api_key=API_KEY)
