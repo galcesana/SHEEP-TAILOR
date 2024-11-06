@@ -1,30 +1,39 @@
 # imports
 import mimetypes # used to check the resume file type
-import google.generativeai as genai
-import fitz  # handle pdf
-import docx  # handle docx
-import os  # used to get the file extension
-import subprocess
-from dotenv import load_dotenv
+import google.generativeai as genai  # used for generating tailored resume content with Google's Gemini model
+import fitz  # library to handle PDF files
+import docx  # library to handle DOCX files
+import os  # used to access file extensions and environment variables
+import subprocess  # used to compile LaTeX files with the `xelatex` command
+from dotenv import load_dotenv  # library to load environment variables from a .env file
 
-# loading the api key from my eniourment
+# Load API key from the environment
 load_dotenv()
 api_key = os.getenv('API_KEY')
-API_KEY = 'AIzaSyBB093d-_sTNO-eaIRvBlzK8RTSOae6-mk'
+API_KEY = 'AIzaSyBB093d-_sTNO-eaIRvBlzK8RTSOae6-mk'  # Define a specific API key as a fallback or direct setting
 
-# configure the Google Generative AI library.
+# Configure the Google Generative AI library
 genai.configure(api_key=API_KEY)
 
-"""
-*functions*
 
-*tailoring the resume using gemini*
+"""
+* Function Definitions
 """
 # Read resume template file
 def read_resume_template(file_path:str)->str:
-    with open(file_path, 'r', encoding='utf-8') as file:
-        content = file.read()
-    return content
+    """
+    Reads and returns the content of a resume template file.
+
+    Parameters:
+    file_path (str): Path to the template file.
+
+    Returns:
+    str: Content of the resume template.
+
+    Raises:
+    FileNotFoundError: If the file does not exist.
+    IOError: If an error occurs while reading the file.
+    """
     try:
         with open(file_path, 'r', encoding='utf-8') as file:
             content = file.read()
@@ -36,12 +45,30 @@ def read_resume_template(file_path:str)->str:
 
 # Function to load resume from a Word file
 def load_docx_resume(file_path:str)->str:
+    """
+    Loads and returns text content from a DOCX resume file.
+
+    Parameters:
+    file_path (str): Path to the DOCX file.
+
+    Returns:
+    str: Text content extracted from the DOCX file.
+    """
     doc = docx.Document(file_path)
     resume_text = "\n".join([para.text for para in doc.paragraphs])
     return resume_text
 
 # Function to load resume from a pdf file
 def load_pdf_resume(file_path: str)->str:
+    """
+    Loads and returns text content from a PDF resume file.
+
+    Parameters:
+    file_path (str): Path to the PDF file.
+
+    Returns:
+    str: Text content extracted from the PDF file.
+    """
     text = ""
     # Open the PDF file
     with fitz.open(file_path) as pdf_document:
@@ -53,12 +80,32 @@ def load_pdf_resume(file_path: str)->str:
 
 # Function to save tailored resume to a tex file
 def save_tailored_resume(tailored_text: str, output_path: str)->None:
+    """
+    Saves tailored resume content to a specified file path.
+
+    Parameters:
+    tailored_text (str): Content of the tailored resume.
+    output_path (str): Path to save the tailored resume file.
+    """
     with open(output_path, 'w') as f:
       f.write(tailored_text)
 
 # Function to tailor resume using gemini API
 def tailor_resume_with_gemini(resume_text: str, job_description: str, resume_template: str)->str:
-    # Construct the prompt for the gemini API
+    """
+    Uses Google's Gemini model to tailor a resume based on a job description.
+
+    Parameters:
+    resume_text (str): Original resume content.
+    job_description (str): Job description to tailor the resume for.
+    resume_template (str): Template to structure the tailored resume.
+
+    Returns:
+    str: Tailored resume content in LaTeX format.
+
+    Raises:
+    RuntimeError: If the Gemini response contains content in unsupported languages.
+    """
     prompt = f"""
     Here is a job description:
     {job_description}
@@ -99,11 +146,29 @@ def tailor_resume_with_gemini(resume_text: str, job_description: str, resume_tem
 
 
 def get_file_extension(file_path:str)->str:
+    """
+    Returns the extension of a given file.
+
+    Parameters:
+    file_path (str): Path to the file.
+
+    Returns:
+    str: File extension (without the dot).
+    """
     # Split the file path and get the extension without the dot
     return os.path.splitext(file_path)[1][1:]
 
 # Function to compile the LaTeX file using xelatex
 def compile_latex_file(output_path:str)->str:
+    """
+    Compiles a LaTeX file into a PDF using the `xelatex` command.
+
+    Parameters:
+    output_path (str): Path to the LaTeX (.tex) file.
+
+    Raises:
+    RuntimeError: If an error occurs during compilation or if `xelatex` is not found.
+    """
     # Get the directory of the .tex file to set as the working directory
     working_directory = os.path.dirname(output_path)
     try:
@@ -121,8 +186,18 @@ def compile_latex_file(output_path:str)->str:
         print("Error: 'xelatex' was not found. Ensure it is installed and in your PATH.")
         raise RuntimeError("The 'xelatex' command was not found. Please check your installation.")
 
-# Main function to tailor resume based on job description
 def tailor_resume(file_path:str, job_description:str, output_path="Tailored_Resume.tex")->None:
+    """
+    Main function to tailor a resume based on a job description.
+
+    Parameters:
+    file_path (str): Path to the original resume file (.docx or .pdf).
+    job_description (str): Job description to tailor the resume for.
+    output_path (str): Path to save the tailored resume LaTeX file.
+
+    Raises:
+    RuntimeError: If no job description is provided or if the file type is unsupported.
+    """
     # check if we got a job description
     if job_description == "":
         raise RuntimeError("Empty description.")
