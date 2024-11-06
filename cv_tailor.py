@@ -139,8 +139,7 @@ def tailor_resume(file_path:str, job_description:str, output_path="Tailored_Resu
     print("\n####### Resume successfully loaded #######\n")
 
     # loading the resume template
-    resume_template = read_resume_template(
-        "C:/Users/galce/OneDrive/שולחן העבודה/FOLDERS/projects/cv matcher/SHEEP-TAILOR/resume templates/1.txt")
+    resume_template = read_resume_template("resume templates/1.txt")
 
     # resume_text = load_docx_resume(file_path)
     tailored_resume = tailor_resume_with_gemini(resume_text, job_description, resume_template)

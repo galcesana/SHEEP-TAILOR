@@ -1,0 +1,289 @@
+
+\documentclass[11pt]{article}
+
+\usepackage[T1]{fontenc}
+\usepackage{inter} 
+\renewcommand*\familydefault{\sfdefault}
+
+\usepackage{geometry}
+\geometry{
+    a4paper,
+    top=1.8cm,
+    bottom=1in,
+    left=2.5cm,
+    right=2.5cm
+}
+
+\setcounter{secnumdepth}{0} % remove section numbering
+\pdfgentounicode=1 % make ATS friendly
+
+\usepackage{enumitem}
+\setlist[itemize]{
+    noitemsep,
+    left=2em
+}
+\setlist[description]{itemsep=0pt}
+\setlist[enumerate]{align=left}
+\usepackage[dvipsnames]{xcolor}
+\colorlet{icnclr}{gray}
+\usepackage{titlesec}
+\titlespacing{\subsection}{0pt}{*0}{*0}
+\titlespacing{\subsubsection}{0pt}{*0}{*0}
+\titleformat{\section}{\color{Sepia}\large\fontseries{black}\selectfont\uppercase}{}{}{\ruleafter}[\global\RemVStrue]
+\titleformat{\subsection}{\fontseries{bold}\selectfont}{}{}{\rvs}
+\titleformat{\subsubsection}{\color{gray}\fontseries{bold}\selectfont}{}{}{}
+
+\usepackage{xhfill} 
+\newcommand\ruleafter[1]{#1~\xrfill[.5ex]{1pt}[gray]} % add rule after title in .5 x-height 
+
+\newif\ifRemVS % remove vspace between \section & \subsection
+\newcommand{\rvs}{
+    \ifRemVS
+        \vspace{-1.5ex}
+    \fi
+    \global\RemVSfalse
+}
+
+\usepackage{fontawesome5}
+
+\usepackage[bookmarks=false]{hyperref} % [imp!]
+\hypersetup{ 
+    colorlinks=true,
+    urlcolor=Sepia,
+    pdftitle={My Resume},
+}
+
+\usepackage[page]{totalcount}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\renewcommand{\headrulewidth}{0pt}	
+\fancyhf{}							
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+
+\begin{document}
+
+%== HEADER ==%
+\begin{center}      
+    {\fontsize{28}{28}\selectfont Your Name} \\ \bigskip
+
+    {\color{icnclr}\faMapMarker} City, Country \quad 
+    {\color{icnclr}\faEnvelope[regular]} \href{mailto:myaname@email.com}{myaname@email.com} \quad
+    {\color{icnclr}\faIcon{mobile-alt}} \href{tel:+920000000000}{+92 000 0000000} 
+    % You can also put your LinkedIn or website address
+   % {\color{icnclr}\faLinkedinIn} \href{https://www.linkedin.com/}{linkedin.com/in/username}
+\end{center}
+%==============
+%==============
+%==============
+\section{About me}
+%==============
+%==============
+A summary of your goals and objectives...
+%==============
+%==============
+\section{Education}
+%==============
+%==============
+%==============
+%==============
+\subsection{Masters in Mathematics\hfill \normalfont 20XY}  
+
+\subsubsection{University of ABC,  City, Country}
+\begin{itemize}
+    \item[\checkmark] \textit{GPA}: 3.8/4.0
+    \item[\checkmark] \textit{Related coursework}: Mathematical modelling and numerical analysis
+    \item[\checkmark] \textit{Thesis:} Write title of your thesis
+    \end{itemize}
+%==============
+%==============
+\subsection{Bachelor Studies in Mathematics\hfill \normalfont 20XX}  
+
+\subsubsection{University of XYZ,  City, Country}
+\begin{itemize}
+    \item[\checkmark] \textit{GPA}: 3.52/4.0
+    \item[\checkmark] \textit{Related coursework}: Major in Mathematics with minor courses in Physics, Probability and Statistics
+    \item[\checkmark] \textit{Thesis:} Write title of your thesis (if any)
+    \end{itemize}
+    
+%==============
+%==============
+\section{Research Projects}
+%==============
+%==============
+\subsection{Short and general version of most recent project's title} % This could be a short version of your master's thesis title
+\begin{itemize}
+    \item[\checkmark] Implemented XYZ method - Accomplished [X] as measured by [Y], by doing [Z] 
+    \item[\checkmark] Developed XYZ using ABC that led to X\% improvement 
+    \item[\checkmark] Solved ABC with AAA method leading to CCC.
+    \item[\checkmark] Accomplished XYZ feature to accomplish ABC.
+    \item[\checkmark] Implemented XYZ library for ABC.
+\end{itemize}
+%==============
+%==============
+%==============
+\subsection{Short and general version of project's title} % This could be a short version of your bachelor's thesis title
+\begin{itemize}
+    \item[\checkmark] Implemented XYZ method - Accomplished [X] as measured by [Y], by doing [Z] 
+    \item[\checkmark] Developed XYZ using ABC that led to X\% improvement 
+    \item[\checkmark] Solved ABC with AAA method leading to CCC.
+    \item[\checkmark] Implemented XYZ library for ABC.
+    \item[\checkmark] Utilized XYZ that increased AA by x\%
+\end{itemize}
+%==============
+%==============
+%==============
+%==============
+\section{Presentations}
+%==============
+%==============
+%==============
+% These are example presentations. Please replace all entries with your presentations. 
+%==============
+\begin{itemize}
+% Conference talks
+    \item[\checkmark] Talk title, Conference name, City, Country (30 May 20XY)
+    \item[\checkmark] Talk title, Conference name, City, Country (02 November 20XZ)
+% Class presentations
+    \item[\checkmark] Presentation Topic in the course of XYZ, University of ABC, City, Country (03 November 20XY)
+    \item[\checkmark] Euler method and modified Euler method in the course of Numerical Analysis, University of XYZ, City, Country (10 April 20XA)
+\end{itemize}
+%==============
+%==============
+\section{Skills}
+%==============
+%==============
+\subsection{Computational}
+\begin{itemize}
+    \item[-] \textcolor{Sepia}{MATLAB}:
+    \item[\checkmark] Implemented XYZ method - Accomplished [X] as measured by [Y], by doing [Z].  
+    \item[\checkmark] Perfomed XYZ with ABC. 
+    \item[\checkmark] Implemented XYZ library for ABC. 
+    \item[-] \textcolor{Sepia}{Python}: 
+    \item[\checkmark] Implemented XYZ method - Accomplished [X] as measured by [Y], by doing [Z].  
+    \item[\checkmark] Perfomed XYZ with ABC. 
+    \item[\checkmark] Implemented XYZ library for ABC.
+\end{itemize}
+\subsection{Problem Solving}
+\begin{itemize}
+    \item[\checkmark] Investigated ....(complete these sentences or use another action verb)
+    \item[\checkmark] Formulated .........
+    \item[\checkmark] Coordinated ....
+    \item[\checkmark] Created .........
+    \item[\checkmark] Evaluated .........
+\end{itemize}
+\subsection{Typesetting}
+\begin{itemize}
+    \item[-] \textcolor{Sepia}{\LaTeX}: 
+    \item[\checkmark] Implemented XYZ method. 
+    \item[\checkmark] Wrote CBA. 
+    \item[\checkmark] Worked collaboratively on.... 
+    \item[\checkmark] Created ....
+    \item[-] \textcolor{Sepia}{MS Word}:  
+    \item[\checkmark] Implemented XYZ method. 
+    \item[\checkmark] Wrote CBA. 
+    \item[\checkmark] Worked collaboratively on.... 
+    \item[\checkmark] Created ....
+\end{itemize}
+\subsection{Languages}
+\begin{itemize}
+    \item[-] \textcolor{Sepia}{Pashto}: Mother tongue
+    \item[-] \textcolor{Sepia}{Urdu}: Second language
+    \item[-] \textcolor{Sepia}{English}: Very good
+        \item[\checkmark] IELTS: Reading--7, Writing--7.5, Speaking--6, Listening--6.
+        \item[\checkmark] \textit{Writing:}  Demonstrated by my XYZ and......
+        \item[\checkmark] \textit{Reading:}  Evident by my XYZ and......
+        \item[\checkmark] \textit{Speaking and Listening:} Supported by my XYZ and.....
+    \end{itemize}
+
+%==============
+%==============
+\section{Professional Qualification}
+%==============
+%==============
+\subsection{Bachelors of Education \hfill \normalfont 20XZ}
+\subsubsection{Open University,  City, Country }
+\begin{itemize}
+    \item[\checkmark] \textit{Marks:} 80\% %\textit{}
+    \item[\checkmark] \textit{Key Training:} Received training on ABC, XYZ and CCC
+    \item[\checkmark] \textit{Thesis:} Completed a notable research project on [specific topic], contributing valuable insights to educational practices
+\end{itemize}
+
+\subsection{Diploma in Information Technology \hfill \normalfont 20XX}
+\subsubsection{Institute,  City, Country }
+\begin{itemize}
+    \item[\checkmark] \textit{Marks:} 64.8\% %\textit{}
+    \item[\checkmark] \textit{Key Training:} Received training on ABC, XYZ and CCC
+    \item[\checkmark] \textit{Thesis:} Completed a notable project on [topic].
+\end{itemize}
+%==============
+%==============
+%==============
+%==============
+\section{Experience}
+%==============
+%==============
+\subsection{Private Maths Tutor \hfill \normalfont Feb 20XX -- July 20XY}
+\subsubsection{City, Country}
+% Start all items with action verbs
+\begin{itemize}
+    \item[\checkmark] Implemented XYZ method - Accomplished [X] as measured by [Y], by doing [Z] 
+    \item[\checkmark]  Developed XYZ using ABC that led to X\% improvement 
+    \item[\checkmark] Solved ABC with AAA method leading to CCC.
+    \item[\checkmark]  Accomplished XYZ feature to accomplish ABC.
+    \item[\checkmark]  Implemented XYZ library for ABC.
+\end{itemize}
+
+\subsection{Role Name \hfill \normalfont Jan 20XX - Feb 20XY}
+\subsubsection{Company Name, City, Country}
+% Start all items with action verbs
+\begin{itemize}
+    \item[\checkmark] Implemented XYZ method - Accomplished [X] as measured by [Y], by doing [Z] 
+    \item[\checkmark]  Developed XYZ using ABC that led to X\% improvement 
+    \item[\checkmark] Solved ABC with AAA method leading to CCC.
+    \item[\checkmark]  Accomplished XYZ feature to accomplish ABC.
+    \item[\checkmark]  Implemented XYZ library for ABC.
+\end{itemize}
+%==============
+%==============
+%==============
+%==============
+\section{Publications}
+%===========
+% Remove this section if you don't have any publications
+% replace with your publications, provide DOIs
+%==========
+\subsection{Journal Articles}
+\begin{itemize}
+    \item[\checkmark] Authors-names in APA format. (20XY) Title of your publication. \textit{Journal Name}, \textbf{vol}(issue no): pages. DOI: 10.0000/j.jtbi.20XY.0000. % You may copy APA format from Google scholars
+    \item[\checkmark] Ali, W., Overton, C.E., Wilkinson, R.R. \& Sharkey, K.J., (20XY) Deterministic epidemic models overestimate the basic reproduction number of observed outbreaks. \textit{Infectious Disease Modelling}, \textbf{9}(3):680–688. DOI: 10.1016/j.idm.20XY.02.007.
+\end{itemize}
+%===========
+%==========
+\subsection{Preprint(s)}
+\begin{itemize}
+    \item[\checkmark] Morison, C., Fic, M., Marcou, T., Mohamadichamgavi, J., Antón, J. R., Sayyar, G., ... \& Ali, W. (20XY). Public Goods Games in Disease Evolution and Spread. arXiv preprint arXiv:2402.17842.
+\end{itemize}
+%===========
+%==========
+%==============
+%==============
+\section{Certifications \& Awards}
+%==============
+% Mentioned most important certificates where you have received some training or award or have delivered a presentation
+%==============
+\begin{itemize}
+    \item[\checkmark] XYZ Scholarships
+    \item[\checkmark] Received ABC Scholarship Award for the academic session 20XX-20XX
+    \item[\checkmark] Certificate of Accomplishment, Awarding Body (28 Oct 20XZ)
+    \item[\checkmark] Certificate of Merit in Masters (2019)
+    \item[\checkmark] Certificate of Merit in Bachelors (2017)
+\end{itemize}
+%==============
+%==============
+%==============
+%==============
+\section{References}
+\textcolor{Sepia}{References available upon request.}
+\end{document}
