@@ -16,7 +16,8 @@ def tailor_resume(resume_path, job_description):
     Returns:
     str: Path to the tailored resume PDF.
     """
-    tailored_resume_path = "tailored_resume/tailored_resume.tex"  # Define path for saving the tailored resume
+    tailored_resume_path = "tailored_resume/tailored_resume.tex"  # Define path for saving the tailored
+    # resume
     CVT.tailor_resume(resume_path, job_description, output_path=tailored_resume_path)
     return "tailored_resume.pdf"
 
@@ -58,9 +59,10 @@ def process_resume():
         return f"Error: {str(e)}. Please try reloading the site and retrying.", 500
 
 if __name__ == '__main__':
-    # Create directories for storing uploaded and tailored resume files if they don't exist
+    # # Create directories for storing uploaded and tailored resume files if they don't exist
     os.makedirs('uploads', exist_ok=True)
     os.makedirs('tailored_resume', exist_ok=True)
 
     # Run the Flask app in debug mode
+    # app.run(host='0.0.0.0', port=8080)
     app.run(debug=True)
