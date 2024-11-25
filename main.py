@@ -64,5 +64,5 @@ if __name__ == '__main__':
     os.makedirs('tailored_resume', exist_ok=True)
 
     # Run the Flask app in debug mode
-    # app.run(host='0.0.0.0', port=8080)
-    app.run(debug=True)
+    app.run(host='0.0.0.0', port=8080)
+    # app.run(debug=True)
