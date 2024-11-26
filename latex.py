@@ -88,7 +88,9 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     """
 
     # model = genai.GenerativeModel('gemini-1.5-flash')
-    model = genai.GenerativeModel('gemini-1.5-flash-8b')
+    # model = genai.GenerativeModel('gemini-1.5-flash-8b')
+    model = genai.GenerativeModel('gemini-1.5-pro')
+
 
     # sending the prompt to gemini
     response = model.generate_content(prompt)
@@ -101,7 +103,7 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     #     raise RuntimeError("Got different language")
     # return the response
     # lyx_code.replace("''' latex", '')
-    cleaned_response = cleaned_response.replace("&", r"\&")
+    # cleaned_response = cleaned_response.replace("&", r"\&")
     cleaned_response = cleaned_response.strip("'''")
     cleaned_response = cleaned_response.strip("latex")
 

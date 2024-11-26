@@ -4,12 +4,14 @@
 \usepackage{titling}
 \usepackage{parskip}
 \usepackage[margin=0.75in]{geometry}
+\usepackage{hyperref}
 
 \titleformat{\section}{\large\bfseries}{}{0em}{}[\titlerule]
 \renewcommand{\maketitle}{
     \hspace{-1em}\begin{tabular*}{\textwidth}{l@{\extracolsep{\fill}}r}
-        \textbf{\LARGE Gal Cesana} \& \textbf{Phone:} 052-4085511 \\
-        \textbf{Email:} galcesana8@gmail.com \& \textbf{GitHub:} github.com/galcesana \\
+        \textbf{\LARGE Gal Cesana} & \textbf{Phone:} 052-4085511 \\
+        \textbf{Email:} galcesana8@gmail.com & \textbf{GitHub:} \href{https://github.com/galcesana}{github.com/galcesana} \\
+         & \textbf{Location:} Hod HaSharon, Israel \\
     \end{tabular*}
     \vspace{1em}
 }
@@ -18,47 +20,46 @@
 
 \maketitle
 
+% Summary Section
 \section*{Summary}
-Highly motivated and analytical third-year computer science student seeking a part-time RevOps Analyst position to leverage my data analysis, machine learning, and CRM experience to support a dynamic team. Proven ability to conduct market research, manage data, and develop reports.  Proficient in Python and various data analysis tools.
+Highly motivated and analytical Computer Science student seeking a part-time RevOps Analyst position at ThetaRay.  Possessing strong research, data analysis, and project management skills, combined with experience in data processing and tool development. Eager to contribute to ThetaRay's mission of enhancing trust in financial transactions.
 
-
+% Skills Section
 \section*{Technical Skills}
 \begin{itemize}[noitemsep,nolistsep]
-    \item \textbf{Languages:} Python, C, C++, Java, PostgreSQL
-    \item \textbf{Machine Learning/Data Analysis:} TensorFlow, PyTorch, Pandas, NumPy
+    \item \textbf{Languages:} Python, C, C++, Java, PostgreSQL, SQL
+    \item \textbf{Libraries:} TensorFlow, PyTorch, Pandas, NumPy
+    \item \textbf{Tools:} Git, Linux, Data Annotation Tools (Python), Excel, PowerPoint
     \item \textbf{Web Development:} HTML, Flask, API Integration
-    \item \textbf{Tools:} Git, Linux, Data Annotation Tools (Python), Excel, PowerPoint, CRM tools (experience a plus)
 \end{itemize}
 
+% Experience Section
 \section*{Professional Experience}
-\textbf{Data Annotator} \hfill SAIPS (Ford Motor Company), Tel Aviv, Israel \\
-\textit{December 2021 – October 2022}
+\textbf{Data Annotator} \hfill SAIPS (A Ford Motor Company Subsidiary), Tel Aviv, Israel \\
+\textit{Dec 2021 -- Oct 2022}
 \begin{itemize}[noitemsep,nolistsep]
-    \item Developed and utilized Python-based data annotation tools, enhancing efficiency for neural network training in autonomous vehicle systems.
-    \item Gained practical experience in data processing and annotation for machine learning applications.
+    \item Developed and utilized Python-based data annotation tools, improving data quality and efficiency for training neural network models.
+    \item Collaborated with developers to refine annotation processes, contributing to the development of autonomous vehicle systems.  Gained practical experience in data processing and analysis within a research and development setting.
 \end{itemize}
 
 \textbf{HR Officer (Captain)} \hfill Israel Defense Forces (IDF) \\
-\textit{July 2018 – May 2021}
+\textit{Jul 2018 -- May 2021}
 \begin{itemize}[noitemsep,nolistsep]
-    \item Led HR planning and data management for a 500-personnel unit, supervising a team of 12.
-    \item Demonstrated leadership and teamwork skills in a demanding environment.
-\end{itemize}
-
-\section*{Projects}
-\textbf{Resume Tailoring Website with Gemini API} \\
-Developed a website leveraging the Gemini API to tailor resumes to specific job descriptions.
-\begin{itemize}[noitemsep,nolistsep]
-    \item Utilized HTML, Flask, Python, and API integration for website development and deployment.
+    \item Led the HR department for a 500-personnel unit, responsible for HR planning, data management, and administrative tasks. Demonstrated strong organizational skills and attention to detail.
+    \item Supervised a team of 12, honing leadership, teamwork, and project management skills in a fast-paced, high-responsibility environment.
 \end{itemize}
 
 
+% Education Section
 \section*{Education}
 \textbf{B.Sc. in Computer Science} \hfill The Hebrew University of Jerusalem \\
-\textit{Expected Graduation: 2026}
+\textit{Expected Graduation: 2026} \\
 
-\section*{Relevant Coursework}
-Algorithms, Data Structures, Operating Systems, Databases, Object-Oriented Programming, Network Systems, Software Engineering, Introduction to Natural Language Processing, Machine Learning Methods, Introduction to Machine Learning.
+
+% Projects Section
+\section*{Projects}
+\textbf{Resume Tailoring Website with Gemini API} \\
+Developed a website using HTML, Flask, Python, and API integration to tailor resumes to specific job descriptions, demonstrating practical application of web development and API integration skills.
 
 
 \end{document}
