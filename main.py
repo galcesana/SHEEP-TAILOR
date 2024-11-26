@@ -16,9 +16,10 @@ def tailor_resume(resume_path, job_description):
     Returns:
     str: Path to the tailored resume PDF.
     """
+    type = 'tex'
     tailored_resume_path = "tailored_resume/tailored_resume.tex"  # Define path for saving the tailored
     # resume
-    CVT.tailor_resume(resume_path, job_description, output_path=tailored_resume_path)
+    CVT.tailor_resume(resume_path, job_description, type)
     return "tailored_resume.pdf"
 
 @app.route('/')

@@ -1,4 +1,7 @@
 import pdfkit
+from latex import read_resume_template
+from utils import *
+import google.generativeai as genai  # used for generating tailored resume content with Google's Gemini model
 
 def convert_html_to_pdf(html_path: str, pdf_path: str) -> None:
     """
@@ -8,7 +11,7 @@ def convert_html_to_pdf(html_path: str, pdf_path: str) -> None:
     html_path (str): Path to the HTML file.
     pdf_path (str): Path to save the PDF file.
     """
-    pdfkit.from_file(html_path, pdf_path)
+    pdfkit.from_file(html_path, pdf_path, css='resume templates/css template 1.css')
 
 def save_tailored_resume_to_html(tailored_text: str, output_path: str) -> None:
     """
@@ -20,6 +23,10 @@ def save_tailored_resume_to_html(tailored_text: str, output_path: str) -> None:
     """
     with open(output_path, 'w', encoding='utf-8') as f:
         f.write(tailored_text)
+
+def remove_until_first_newline(s):
+    return s.split('\n', 1)[-1]
+
 
 def tailor_resume_with_gemini_html(resume_text: str, job_description: str, resume_template: str)->str:
     """
@@ -42,6 +49,9 @@ def tailor_resume_with_gemini_html(resume_text: str, job_description: str, resum
 
     Here is the current resume:
     {resume_text}
+    
+    Here is a resume template for you to use:
+    {resume_template}
 
     ##################################################
 
@@ -53,20 +63,28 @@ def tailor_resume_with_gemini_html(resume_text: str, job_description: str, resum
     - Use appropriate tags for headings, bullet points, and sections.
     - Preserve any existing links from the original resume; do not invent or omit links.
     - Ensure the resume is well-structured, visually appealing, and fits on one page.
+    - Provide the tailored resume in plain text format
     """
 
     # model = genai.GenerativeModel('gemini-1.5-flash')
-    model = genai.GenerativeModel('gemini-1.5-flash-8b')
+    # model = genai.GenerativeModel('gemini-1.5-flash-8b')
+    model = genai.GenerativeModel('gemini-1.5-pro')
+
 
     # sending the prompt to gemini
     response = model.generate_content(prompt)
     print("\n####### Response successfully generated #######\n")
     # Extract the lyx_code from the response
     lyx_code = response.text.strip()
+    # lyx_code = " ".join([word for word in lyx_code.split() if word != "'''html"])
+
+    lyx_code = lyx_code.replace("'''html\n", "")
+    lyx_code = lyx_code.replace("'''", "")
+    # lyx_code = remove_until_first_newline(lyx_code)
+
     print("########################## GEMINI RESPONSE ##########################\n\n")
     print(lyx_code)
     print("\n\n########################## GEMINI RESPONSE ##########################\n\n")
-    lyx_code = lyx_code.strip("'''")
 
     return lyx_code
 
@@ -99,7 +117,7 @@ def tailor_resume_html(file_path:str, job_description:str, output_path="Tailored
     print("\n####### Resume successfully loaded #######\n")
 
     # loading the resume template
-    resume_template = read_resume_template("resume templates/1.txt")
+    resume_template = read_resume_template("resume templates/html template 1.txt")
 
     # resume_text = load_docx_resume(file_path)
     # tailored_resume = tailor_resume_with_gemini_latex(resume_text, job_description, resume_template)

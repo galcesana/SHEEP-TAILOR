@@ -1,68 +1,193 @@
-```html
 <!DOCTYPE html>
 <html lang="en">
 <head>
 <meta charset="UTF-8">
-<title>Gal Cesana - Resume</title>
+<link href='https://fonts.googleapis.com/css?family=Lato:400,300,700' rel='stylesheet' type='text/css'>
 <style>
-body { font-family: Arial, sans-serif; line-height: 1.6; }
-h1, h2, h3 { color: #333; }
-ul { list-style-type: disc; margin-left: 20px; }
-li { margin-bottom: 5px; }
+body, html {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: 'Lato', sans-serif;
+}
+.container {
+  width: 800px;
+  margin: auto;
+  background: #f5f5f5;
+  padding: 20px;
+}
+.header {
+    background: #eee;
+    padding: 20px;
+    margin-bottom: 20px;
+}
+.full-name {
+    font-size: 2em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.contact-info, .about {
+    margin-bottom: 10px;
+}
+.section {
+    margin-bottom: 20px;
+}
+.section__title {
+    font-size: 1.5em;
+    font-weight: 700;
+    margin-bottom: 10px;
+}
+.section__list-item {
+    display: flex;
+    margin-bottom: 10px;
+}
+.section__list-item .left,
+.section__list-item .right {
+  width: 50%;
+}
+.skills__item {
+  display: flex;
+  margin-bottom: 10px;
+}
+.skills__item .left {
+    width: 30%;
+}
+.skills__item .right {
+    width: 70%;
+}
+.skills input[type="checkbox"] {
+  display: none;
+}
+.skills label {
+  display: inline-block;
+  width: 20px;
+  height: 20px;
+  background: #ddd;
+  margin-right: 3px;
+  border-radius: 3px;
+  cursor: pointer;
+  vertical-align: middle;
+}
+.skills input[type="checkbox"]:checked + label {
+  background: #999;
+}
+.skills .name {
+    font-weight: bold;
+}
+
 </style>
 </head>
 <body>
+<div class="container">
+  <div class="header">
+    <div class="full-name">
+      <span class="first-name">Gal</span> 
+      <span class="last-name">Cesana</span>
+    </div>
+    <div class="contact-info">
+      <span class="email">Email: </span>
+      <span class="email-val">galcesana8@gmail.com</span>
+      <span class="separator"></span>
+      <span class="phone">Phone: </span>
+      <span class="phone-val">052-4085511</span>
+    </div>
+    <div class="about">
+      <span class="position">RevOps Analyst (Student)</span>
+      <span class="desc">
+        Highly motivated and detail-oriented Computer Science student with proven data analysis and project management skills seeking a part-time RevOps Analyst position. Proficient in Python, data processing, and CRM tools, with experience in market research and data annotation for machine learning applications.
+      </span>
+    </div>
+  </div>
+  <div class="details">
+    <div class="section">
+      <div class="section__title">Experience</div>
+      <div class="section__list">
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">SAIPS (A Ford Motor Company Subsidiary)</div>
+            <div class="addr">Tel Aviv</div>
+            <div class="duration">Dec 2021 – Oct 2022</div>
+          </div>
+          <div class="right">
+            <div class="name">Data Annotator</div>
+            <div class="desc">Developed and utilized Python-based data annotation tools for training neural network models in autonomous vehicle systems. Collaborated with developers to improve data quality and efficiency. Gained practical experience in data processing and annotation for machine learning applications.</div>
+          </div>
+        </div>
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">Israel Defense Forces (IDF)</div>
+            <div class="duration">Jul 2018 – May 2021</div>
+          </div>
+          <div class="right">
+            <div class="name">HR Officer (Captain)</div>
+            <div class="desc">Led the HR department for a 500-personnel unit, overseeing HR planning, data management, and administrative tasks. Supervised a team of 12, demonstrating leadership and teamwork skills in a fast-paced environment.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section__title">Education</div>
+      <div class="section__list">
+        <div class="section__list-item">
+          <div class="left">
+            <div class="name">The Hebrew University of Jerusalem</div>
+            <div class="duration">Expected Graduation: 2026</div>
+          </div>
+          <div class="right">
+            <div class="name">B.Sc. in Computer Science (Third Year Student)</div>
+            <div class="desc">Relevant Coursework: Algorithms, Data Structures, Operating Systems, Databases, Object-Oriented Programming (OOP), Network Systems, Software Engineering, Introduction to Natural Language Processing, Machine Learning Methods, Introduction to Machine Learning.</div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="section">
+      <div class="section__title">Projects</div>
+      <div class="section__list">
+        <div class="section__list-item">
+           <div class="name">Resume Tailoring Website with Gemini API</div>
+           <div class="text">Developed a website that leverages the Gemini API to tailor resumes to specific job descriptions. Utilized HTML, Flask, Python, and API integration. <a href="github.com/galcesana">github.com/galcesana</a></div>
+         </div>
+      </div>
+    </div>
 
-<h1>Gal Cesana</h1>
-<p>Cell: 052-4085511 | Email: galcesana8@gmail.com | GitHub: <a href="github.com/galcesana">github.com/galcesana</a></p>
-
-<h2>Summary</h2>
-<p>Highly motivated and results-oriented third-year Computer Science student seeking a challenging R&D position leveraging strong programming, machine learning, and data analysis skills to contribute to innovative projects.  Proven ability to lead and collaborate effectively in fast-paced environments.</p>
-
-<h2>Education</h2>
-<h3>The Hebrew University of Jerusalem</h3>
-<p>B.Sc. in Computer Science (Expected Graduation: 2026)</p>
-
-<h2>Skills</h2>
-<h3>Technical Skills</h3>
-<ul>
-<li>Programming Languages: Python, C, C++, Java, PostgreSQL</li>
-<li>Machine Learning & Data Analysis: TensorFlow, PyTorch, Pandas, NumPy</li>
-<li>Web Development: HTML, Flask, API Integration</li>
-<li>Tools: Git, Linux, Data Annotation Tools (Python)</li>
-</ul>
-<h3>Leadership & Teamwork</h3>
-<ul>
-<li>Leadership Experience:  Led HR department for a 500-personnel unit, overseeing HR planning, data management, and administrative tasks.</li>
-<li>Teamwork: Supervised a team of 12, fostering teamwork in a high-responsibility environment.</li>
-</ul>
-
-
-<h2>Experience</h2>
-<h3>Data Annotator</h3>
-<h4>SAIPS (A Ford Motor Company Subsidiary), Tel Aviv</h4>
-<p>Dec 2021 – Oct 2022</p>
-<ul>
-<li>Collaborated with developers to create and utilize data annotation tools for autonomous vehicle systems, enabling neural network model training.</li>
-<li>Gained hands-on experience with Python, data processing, and annotation for machine learning applications in an R&D setting.</li>
-</ul>
-
-<h3>HR Officer (Captain)</h3>
-<h4>Israel Defense Forces (IDF)</h4>
-<p>Jul 2018 – May 2021</p>
-<ul>
-<li>Led the HR department for a 500-personnel unit, overseeing HR planning, data management, and administrative tasks.</li>
-<li>Supervised a team of 12, honing teamwork and leadership skills in a high-responsibility, fast-paced environment.</li>
-</ul>
-
-
-<h2>Projects</h2>
-<h3>Machine Learning Projects</h3>
-<p>Hands-on experience with TensorFlow, PyTorch, Pandas, and NumPy in ML-focused coursework.</p>
-<h3>Resume Tailoring Website with Gemini API</h3>
-<p>Developed a website leveraging the Gemini API to tailor resumes to specific job descriptions.  Users upload resumes, input job descriptions, and receive customized, role-optimized resumes.</p>
-
-
+    <div class="section">
+       <div class="section__title">Skills</div>
+       <div class="skills">
+         <div class="skills__item">
+           <div class="left"><div class="name">Python</div></div>
+           <div class="right">
+            <input id="ck1" type="checkbox" checked/>
+            <label for="ck1"></label>
+            <input id="ck2" type="checkbox" checked/>
+            <label for="ck2"></label>
+            <input id="ck3" type="checkbox" checked/>
+            <label for="ck3"></label>
+            <input id="ck4" type="checkbox" checked/>
+            <label for="ck4"></label>
+            <input id="ck5" type="checkbox" checked/>
+            <label for="ck5"></label>
+           </div>
+         </div>
+         <div class="skills__item">
+           <div class="left"><div class="name">Data Analysis</div></div>
+           <div class="right">
+            <input id="ck6" type="checkbox" checked/>
+            <label for="ck6"></label>
+            <input id="ck7" type="checkbox" checked/>
+            <label for="ck7"></label>
+            <input id="ck8" type="checkbox" checked/>
+            <label for="ck8"></label>
+            <input id="ck9" type="checkbox" checked/>
+            <label for="ck9"></label>
+            <input id="ck10" type="checkbox" checked/>
+            <label for="ck10"></label>
+           </div>
+         </div>
+       </div>
+     </div>
+  </div>
+</div>
 </body>
 </html>
+
 ```

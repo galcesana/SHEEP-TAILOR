@@ -43,6 +43,9 @@ def save_tailored_resume_to_tex(tailored_text: str, output_path: str)->None:
     with open(output_path, 'w') as f:
       f.write(tailored_text)
 
+def remove_until_first_newline(s):
+    return s.split('\n', 1)[-1]
+
 # Function to tailor resume using gemini API
 def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resume_template: str)->str:
     """
@@ -106,6 +109,8 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     # cleaned_response = cleaned_response.replace("&", r"\&")
     cleaned_response = cleaned_response.strip("'''")
     cleaned_response = cleaned_response.strip("latex")
+    cleaned_response = remove_until_first_newline(cleaned_response)
+
 
     print("########################## GEMINI RESPONSE ##########################\n\n")
     print(cleaned_response)
@@ -144,7 +149,7 @@ def compile_latex_file(output_path:str)->str:
         raise RuntimeError("The 'xelatex' command was not found. Please check your installation.")
 
 
-def tailor_resume_latex(file_path:str, job_description:str, output_path="Tailored_Resume.latex")->None:
+def tailor_resume_latex(file_path:str, job_description:str, output_path="Tailored_Resume.tex")->None:
     """
     Main function to tailor a resume based on a job description.
 
