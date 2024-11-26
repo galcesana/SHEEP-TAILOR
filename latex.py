@@ -94,16 +94,16 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     response = model.generate_content(prompt)
     print("\n####### Response successfully generated #######\n")
     # Extract the lyx_code from the response
-    lyx_code = response.text.strip()
+    cleaned_response = response.text.strip()
 
     # check if we got some bad answer from gemini
     # if lyx_code == "69":
     #     raise RuntimeError("Got different language")
     # return the response
     # lyx_code.replace("''' latex", '')
-    cleaned_response = lyx_code.replace("&", r"\&")
-    # cleaned_response = lyx_code.strip("'''")
-    # cleaned_response = cleaned_response.strip("latex")
+    cleaned_response = cleaned_response.replace("&", r"\&")
+    cleaned_response = cleaned_response.strip("'''")
+    cleaned_response = cleaned_response.strip("latex")
 
     print("########################## GEMINI RESPONSE ##########################\n\n")
     print(cleaned_response)
