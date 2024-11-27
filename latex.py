@@ -84,8 +84,10 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     - Avoid LaTeX syntax issues such as misplaced alignment tabs (`&`) and ensure there are no errors such 
     as "Missing begin document.
     - Aim to fit the resume onto a single page, following the provided template.
-    -make sure it fits XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex)
-    - DO NOT INCLUDE ANY OTHER SIGNS OR CHARACTERS RATHER THAN THE LYCH CODE
+    - Make sure it fits XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex).
+    - Do not include signs that will cause problem compiling the latex code such as &.
+    - Do not remove any important information in the resume (such as a work place, education, or skill).
+    - DO NOT INCLUDE ANY OTHER SIGNS OR CHARACTERS RATHER THAN THE LYCH CODE.
 
     If these conditions cannot be met, do not attempt to fix them; simply write the number "69" to indicate an error. Otherwise, produce a valid, polished resume.
     """
@@ -109,7 +111,7 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     # cleaned_response = cleaned_response.replace("&", r"\&")
     cleaned_response = cleaned_response.strip("'''")
     cleaned_response = cleaned_response.strip("latex")
-    cleaned_response = remove_until_first_newline(cleaned_response)
+    # cleaned_response = remove_until_first_newline(cleaned_response)
 
 
     print("########################## GEMINI RESPONSE ##########################\n\n")
