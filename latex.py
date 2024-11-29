@@ -87,6 +87,8 @@ def tailor_resume_with_gemini_latex(resume_text: str, job_description: str, resu
     - Make sure it fits XeTeX, Version 3.141592653-2.6-0.999996 (TeX Live 2024) (preloaded format=xelatex).
     - Do not include signs that will cause problem compiling the latex code such as &.
     - Do not remove any important information in the resume (such as a work place, education, or skill).
+    - The Resume template provided is only a template, do not use any information from it other than the 
+    template it is written in - all information needs to come from the current resume.
     - DO NOT INCLUDE ANY OTHER SIGNS OR CHARACTERS RATHER THAN THE LYCH CODE.
 
     If these conditions cannot be met, do not attempt to fix them; simply write the number "69" to indicate an error. Otherwise, produce a valid, polished resume.
